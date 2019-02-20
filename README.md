@@ -1,0 +1,2 @@
+# PrettyDate
+Localize + Date = PrettyDate :)
