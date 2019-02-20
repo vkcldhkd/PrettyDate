@@ -25,6 +25,7 @@ class MainViewController: UIViewController {
     }
     
     let languageArray = [("한국어","ko"), ("ENGLISH", "en"), ("日本語", "ja")]
+    var alert: UIAlertController?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setLabels()
@@ -34,22 +35,26 @@ class MainViewController: UIViewController {
 
 extension MainViewController{
     @IBAction func changeLanguage(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        languageArray.forEach{
-            let language = $0.0
-            let code = $0.1
+        if alert == nil {
+            alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
-            let action = UIAlertAction(title: language, style: .default, handler: {[weak self] (_) in
-                guard let self = self else { return }
-                Localize.setCurrentLanguage(code)
-                self.setLabels()
-            })
-            alert.addAction(action)
+            languageArray.forEach{
+                let language = $0.0
+                let code = $0.1
+                
+                let action = UIAlertAction(title: language, style: .default, handler: {[weak self] (_) in
+                    guard let self = self else { return }
+                    Localize.setCurrentLanguage(code)
+                    self.setLabels()
+                })
+                self.alert!.addAction(action)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            self.alert!.addAction(cancelAction)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(cancelAction)
-        
-        self.present(alert, animated: true, completion: nil)
+
+        guard let alertController = self.alert else { return }
+        self.present(alertController, animated: true, completion: nil)
         
     }
     
