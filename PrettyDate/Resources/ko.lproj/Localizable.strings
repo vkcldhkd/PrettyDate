@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  PrettyDate
+
+  Created by 1 on 20/02/2019.
+  Copyright © 2019 Sung hyun. All rights reserved.
+*/
+
+TIME_AGO_NOW = "방금";
+TIME_AGO_MINUTE = "분 전";
+TIME_AGO_HOUR = "시간 전";
+TIME_AGO_DAY = "일 전";
+TIME_AGO_WEEK = "주 전";
+TIME_AGO_MONTH = "달 전";
+TIME_AGO_YEAR = "년 전";
